@@ -1,0 +1,11 @@
+apiversion: v1 
+kind: Service 
+metadata: 
+  name: vit-svc 
+spec:  
+  selector:
+      app: vit-app
+  ports: 
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
