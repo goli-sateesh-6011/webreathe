@@ -25,9 +25,14 @@ jobs:
             service_account_key: ${{ secrets.GCP_CREDENTIALS }}
             project_id: ${{ env.PROJECT_ID }}
 
+        - name: Authenticate to Google Cloud 
+          uses: google-github-actions/setup-gcloud
+          with:
+            credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
         - name: Authenticate Docker
           run: | 
-            gcloud auth configure-docker 
+            gcloud auth configure-docker us-central1-docker.pkg.dev
         
         - name: Build and Push Docker image 
           run: | 
@@ -39,7 +44,7 @@ jobs:
         - name: Set the GKE secrets.GCP_CREDENTIALS
           run: | 
             gcloud container clusters get-credentials webreathe --zone us-central1 --project ${{ env.PROJECT_ID }}
-            
+
         - name: Deploy to GKE
           run: | 
             kubectl deploy kube-mysql.yaml
