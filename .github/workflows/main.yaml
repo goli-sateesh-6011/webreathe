@@ -38,7 +38,7 @@ jobs:
         - name: Build and Push Docker image 
           run: | 
             cd modules/
-            IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe:${{ github.sha }}
+            IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:${{ github.sha }}
             docker build -t $IMAGE .
             docker push $IMAGE
 
@@ -50,3 +50,6 @@ jobs:
           run: | 
             kubectl deploy kube-mysql.yaml
             kubectl deploy kube-mysql-svc.yaml
+            kubectl deploy kube-app-svc.yaml
+            kubectl deploy kube-app-secret.yaml
+            kubectl deploy kube-app.yaml
