@@ -29,6 +29,6 @@ jobs:
         
         - name: Build and Push Docker image 
           run: | 
-            IMAGE=gcr.io/${{ env.PRJECT_ID }}//my-app:${{ github.sha }}
+            IMAGE=gcr.io/${{ env.PROJECT_ID }}/my-app:${{ github.sha }}
             docker build -t $IMAGE .
             docker push $IMAGE
