@@ -48,8 +48,8 @@ jobs:
 
         - name: Deploy to GKE
           run: | 
-            kubectl deploy kube-mysql.yaml
-            kubectl deploy kube-mysql-svc.yaml
-            kubectl deploy kube-app-svc.yaml
-            kubectl deploy kube-app-secret.yaml
-            kubectl deploy kube-app.yaml
+            kubectl apply -f kube-mysql.yaml
+            kubectl apply -f kube-mysql-svc.yaml
+            kubectl apply -f kube-app-svc.yaml
+            kubectl apply -f kube-app-secret.yaml
+            kubectl apply -f kube-app.yaml
