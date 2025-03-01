@@ -40,12 +40,12 @@ jobs:
           run: | 
             gcloud auth configure-docker us-central1-docker.pkg.dev
         
-        - name: Build and Push Docker image 
-          run: | 
-            cd modules/
-            IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:${{ github.sha }}
-            docker build -t $IMAGE .
-            docker push $IMAGE
+        # - name: Build and Push Docker image 
+        #   run: | 
+        #     cd modules/
+        #     IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:${{ github.sha }}
+        #     docker build -t $IMAGE .
+        #     docker push $IMAGE
 
         - name: Set the GKE secrets.GCP_CREDENTIALS
           run: | 
