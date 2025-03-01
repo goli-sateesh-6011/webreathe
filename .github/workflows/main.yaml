@@ -31,6 +31,11 @@ jobs:
             service_account_key: ${{ secrets.GCP_CREDENTIALS }}
             project_id: ${{ env.PROJECT_ID }}
 
+        - name: Install gke-gcloud-auth-plugin
+          run: | 
+            sudo apt-get update 
+            sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+
         - name: Authenticate Docker
           run: | 
             gcloud auth configure-docker us-central1-docker.pkg.dev
