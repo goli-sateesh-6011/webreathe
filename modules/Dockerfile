@@ -39,7 +39,7 @@ EXPOSE 5173
 CMD /bin/bash -c "while ! nc -z mysql-svc 3306; do sleep 1; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
 
 #Build Frontend assets for Production
-#RUN npm run build
+#RUN npm run build 
 
 #For the Production
 #ENV APP_ENV=production
