@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
         - name: app
-          image: us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:latest  
+          image: us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:bce00cedf5fd981923ab4a8e57c5fc15dc459eb6
           ports: 
           - containerPort: 8000
           - containerPort: 5173
