@@ -29,6 +29,9 @@ RUN composer install --no-dev --optimize-autoloader
 #Installing Node.js dependencies
 RUN npm install 
 
+# Installing dependencies
+RUN npm install @restart/ui --save && npm install @types/react-bootstrap --save-dev
+
 #Build Frontend assets for Production
 RUN npm run build
 
