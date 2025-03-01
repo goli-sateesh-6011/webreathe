@@ -33,5 +33,7 @@ RUN npm install
 EXPOSE 8000  	
 EXPOSE 5173
 
-#CMD php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host
-CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
+#For docker-compose 
+#CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
+#For Kubernetes
+CMD /bin/bash -c "while ! nc -z mysql 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
