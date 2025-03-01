@@ -50,13 +50,13 @@ spec:
                 secretKeyRef:
                   name: db-secrets
                   key: DB_PASSWORD
-          resources: 
-            requests:
-              memory: "512Mi"
-              cpu: "500m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+          # resources: 
+          #   requests:
+          #     memory: "512Mi"
+          #     cpu: "500m"
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
           # livenessProbe:
           #   httpGet:
           #     path: /healthz 
