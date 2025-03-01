@@ -52,10 +52,10 @@ spec:
                   key: DB_PASSWORD
           resources: 
             requests:
-              memory: "64Mi"
-              cpu: "250m"
+              memory: "512Mi"
+              cpu: "500m"
             limits:
-              memory: "128Mi"
+              memory: "512Mi"
               cpu: "500m"
           # livenessProbe:
           #   httpGet:
