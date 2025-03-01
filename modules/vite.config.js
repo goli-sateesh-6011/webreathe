@@ -10,4 +10,13 @@ export default defineConfig({
         }),
         react(),
     ],
+    server: {
+        watch: {
+            usePolling: true,
+            interval: 100,
+        },
+        fs: {
+            strict: false,
+        },
+    },
 });
