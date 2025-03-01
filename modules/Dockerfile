@@ -36,4 +36,4 @@ EXPOSE 5173
 #For docker-compose 
 #CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
 #For Kubernetes
-CMD /bin/bash -c "while ! nc -z mysql 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
+CMD /bin/bash -c "while ! nc -z mysql-svc 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
