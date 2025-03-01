@@ -10,14 +10,14 @@ spec:
     metadata:
       labels:
         app: mysql
-  spec: 
-    containers:
-      - name: mysql 
-        image: mysql:5.7 
-        ports: 
-          - containerPort: 3306
-        env: 
-          - name: MYSQL_ROOT_PASSWORD
-            value: root   
-          - name: MYSQL_DATABASE 
-            value: webreathe       
+    spec: 
+      containers:
+        - name: mysql 
+          image: mysql:5.7 
+          ports: 
+            - containerPort: 3306
+          env: 
+            - name: MYSQL_ROOT_PASSWORD
+              value: root   
+            - name: MYSQL_DATABASE 
+              value: webreathe       
