@@ -11,64 +11,64 @@ spec:
     metadata: 
       labels:
         app: vit-app
-  spec: 
-    containers: 
-      - name: app
-        image: us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:latest  
-        ports: 
-        - containerPort: 8000
-        - containerPort: 5173
-        imagePullPolicy: Always
-        env:
-          - name: DB_CONNECTION
-            valueFrom: 
-              secretKeyRef:
-                name: db-secrets
-                key: DB_CONNECTION
-          - name: DB_HOST
-            valueFrom:
-              secretKeyRef:
-                name: db-secrets
-                key: DB_HOST
-          - name: DB_PORT
-            valueFrom:
-              secretKeyRef:
-                name: db-secrets
-                key: DB_PORT
-          - name: DB_DATABASE
-            valueFrom:
-              secretKeyRef:
-                name: db-secrets
-                key: DB_DATABASE
-          - name: DB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: db-secrets
-                key: DB_USERNAME
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-secrets
-                key: DB_PASSWORD
-        resources: 
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /healthz 
-            port: 8000 
-            httpHeaders: 
-            - name: Custom-Header 
-              value: Awesome
-          initialDelaySeconds: 3
-          periodSeconds: 3 
-        readinessProbe: 
-          httpGet:
-            path: //healthz
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
+    spec: 
+      containers: 
+        - name: app
+          image: us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:latest  
+          ports: 
+          - containerPort: 8000
+          - containerPort: 5173
+          imagePullPolicy: Always
+          env:
+            - name: DB_CONNECTION
+              valueFrom: 
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_CONNECTION
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_PORT
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_PASSWORD
+          resources: 
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /healthz 
+              port: 8000 
+              httpHeaders: 
+              - name: Custom-Header 
+                value: Awesome
+            initialDelaySeconds: 3
+            periodSeconds: 3 
+          readinessProbe: 
+            httpGet:
+              path: //healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
