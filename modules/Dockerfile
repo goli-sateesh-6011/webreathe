@@ -27,7 +27,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 #Installing Node.js dependencies
-RUN npm install 
+RUN npm install && \
 	npm install @restart/ui --save && \
 	npm install @types/react-bootstrap --save-dev
 
