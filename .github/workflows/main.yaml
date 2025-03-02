@@ -58,7 +58,7 @@ jobs:
           run: | 
             gcloud container clusters get-credentials webreathe --zone us-central1 --project ${{ env.PROJECT_ID }}
 
-        # Deploying Yaml files on the Cluster(GKE)
+        # Deploying Yaml files on the Cluster(GKE) TEST
         - name: Deploy to GKE
           run: | 
             kubectl apply -f kube-mysql.yaml

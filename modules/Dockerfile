@@ -31,7 +31,7 @@ RUN npm install && \
 	npm install @restart/ui --save
 
 #For the frontend 
-#EXPOSE 8000  	
+EXPOSE 8000  	
 EXPOSE 5173
 
 #For deploying on Docker-Compose 
