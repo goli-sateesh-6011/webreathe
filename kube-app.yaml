@@ -53,27 +53,27 @@ spec:
                   name: db-secrets
                   key: DB_PASSWORD
           # Resources and Limits for the Pod CPU and Memory
-          resources: 
-            requests:
-              memory: "512Mi"
-              cpu: "500m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+          # resources: 
+          #   requests:
+          #     memory: "512Mi"
+          #     cpu: "500m"
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
           # This Checks whether the application is healthy or not
-          livenessProbe:
-            httpGet:
-              path: /healthz 
-              port: 8000 
-              httpHeaders: 
-              - name: Custom-Header 
-                value: Awesome
-            initialDelaySeconds: 3
-            periodSeconds: 3 
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz 
+          #     port: 8000 
+          #     httpHeaders: 
+          #     - name: Custom-Header 
+          #       value: Awesome
+          #   initialDelaySeconds: 3
+          #   periodSeconds: 3 
           # This chekcs whether the application is ready or not
-          readinessProbe: 
-            httpGet:
-              path: /healthz
-              port: 8000
-            initialDelaySeconds: 5
-            periodSeconds: 5
+          # readinessProbe: 
+          #   httpGet:
+          #     path: /healthz
+          #     port: 8000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
