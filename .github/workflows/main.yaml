@@ -46,19 +46,19 @@ jobs:
             gcloud auth configure-docker us-central1-docker.pkg.dev
         
         # Build and push to the Artifacts
-        # - name: Build and Push Docker image 
-        #   run: | 
-        #     cd modules/
-        #     IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:${{ github.sha }}
-        #     docker build -t $IMAGE .
-        #     docker push $IMAGE
+        - name: Build and Push Docker image 
+          run: | 
+            cd modules/
+            IMAGE=us-central1-docker.pkg.dev/gcp-videos-451916/webreathe/vit-app:${{ github.sha }}
+            docker build -t $IMAGE .
+            docker push $IMAGE
 
         # Accessing the GKE Cluster
         - name: Set the GKE secrets.GCP_CREDENTIALS
           run: | 
             gcloud container clusters get-credentials webreathe --zone us-central1 --project ${{ env.PROJECT_ID }}
 
-        # Deploying Yaml files on the Cluster(GKE)
+        # Deploying Yaml files on the Cluster(GKE) TEST
         - name: Deploy to GKE
           run: | 
             kubectl apply -f kube-mysql.yaml
