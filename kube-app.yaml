@@ -3,7 +3,8 @@ kind: Deployment
 metadata: 
   name: vit-app 
 spec: 
-  # replicas: 2
+  # For Scalability I have added the replica factor 2 
+  replicas: 2
   selector:
     matchLabels:
       app: vit-app
@@ -19,6 +20,7 @@ spec:
           - containerPort: 8000
           - containerPort: 5173
           imagePullPolicy: Always
+          # Pulls the Env values from the secrets
           env:
             - name: DB_CONNECTION
               valueFrom: 
@@ -50,6 +52,7 @@ spec:
                 secretKeyRef:
                   name: db-secrets
                   key: DB_PASSWORD
+          # Resources and Limits for the Pod CPU and Memory
           # resources: 
           #   requests:
           #     memory: "512Mi"
@@ -57,6 +60,7 @@ spec:
           #   limits:
           #     memory: "512Mi"
           #     cpu: "500m"
+          # This Checks whether the application is healthy or not
           # livenessProbe:
           #   httpGet:
           #     path: /healthz 
@@ -66,6 +70,7 @@ spec:
           #       value: Awesome
           #   initialDelaySeconds: 3
           #   periodSeconds: 3 
+          # This chekcs whether the application is ready or not
           # readinessProbe: 
           #   httpGet:
           #     path: /healthz

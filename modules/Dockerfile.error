@@ -1,0 +1,52 @@
+# First Stage: Build frontend assets using Node
+FROM node:18-alpine as build-stage
+
+# Set working directory
+WORKDIR /var/www
+
+# Copy package.json and package-lock.json first!
+COPY package*.json ./
+
+# Install Node.js dependencies
+RUN npm install
+
+# Install @restart/ui
+RUN npm install @restart/ui
+
+# Build frontend assets for production
+RUN npm run build
+
+# Second Stage: Serve PHP application
+FROM php:8.1-fpm as production-stage
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libonig-dev \
+    libxml2-dev \
+    default-mysql-client \
+    netcat-openbsd \
+    && docker-php-ext-install pdo_mysql
+
+# Set working directory
+WORKDIR /var/www
+
+# Copy PHP-related files only (skip frontend files)
+COPY . .
+
+# Copy the built frontend assets from the first stage
+COPY --from=build-stage /var/www/public /var/www/public
+
+# Install PHP dependencies using Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Expose ports for frontend (Vite) and backend (PHP)
+EXPOSE 8000
+EXPOSE 5173
+
+# Set environment variables for production (uncomment if needed)
+# ENV APP_ENV=production
+# ENV APP_DEBUG=false
+
+# Wait for MySQL and run migrations, then start PHP and serve the application
+CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"

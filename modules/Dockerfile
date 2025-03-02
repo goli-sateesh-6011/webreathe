@@ -1,5 +1,5 @@
 # Single-Stage: Base PHP environment with Composer
-FROM php:8.1-fpm as base
+FROM php:8.1-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -31,19 +31,18 @@ RUN npm install && \
 	npm install @restart/ui --save
 
 #For the frontend 
-EXPOSE 8000  	
+#EXPOSE 8000  	
 EXPOSE 5173
 
-#For Staging -- docker-compose 
-#CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
-CMD /bin/bash -c "while ! nc -z mysql-svc 3306; do sleep 1; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
+#For deploying on Docker-Compose 
+CMD /bin/bash -c "while ! nc -z db 3306; do sleep 1; done; php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
+
+#For Staging on Kubernetes on GKE
+#CMD /bin/bash -c "while ! nc -z mysql-svc 3306; do sleep 1; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000 & npm run dev -- --host"
 
 #For the Production
 #ENV APP_ENV=production
 #ENV APP_DEBUG=false
 
-#Build Frontend assets for Production
-#RUN npm run build 
-
-#For Prodcution -- Kubernetes
+#For Prodcution on Kubernetes GKE
 #CMD /bin/bash -c "while ! nc -z mysql-svc 3306; do sleep 1; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000 & npm run build -- --host"
